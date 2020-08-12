@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-z
+  namespace: petclinic
+  labels:
+    app: app-z
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-z
+  template:
+    metadata:
+      labels:
+        app: app-z
+    spec:
+      containers:
+      - image: amitmohleji/appz:8
+        name: app-z
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-z
+  namespace: petclinic
+spec:
+  selector: 
+    app: app-z
+  type: NodePort
+  ports:
+      - port: 8080
+
