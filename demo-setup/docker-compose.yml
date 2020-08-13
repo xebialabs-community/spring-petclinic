@@ -11,6 +11,7 @@ jenkins:
    - socat
   environment:
    - CASC_JENKINS_CONFIG=/var/jenkins_home/casc_configs/jenkins.yaml
+   - jenkins_password=admin
 
 xld:
   image: xebialabs/xl-deploy:9.7.2
