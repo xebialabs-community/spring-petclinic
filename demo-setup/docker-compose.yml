@@ -1,0 +1,10 @@
+
+jenkins:
+  image: xebialabsunsupported/docker-jenkins:2.189-alpine
+  volumes:
+   - /var/run/docker.sock:/var/run/docker.sock
+   - ./artifacts/jenkins.yaml:/var/jenkins_home/casc_configs/jenkins.yaml
+  ports:
+   - "8080:8080"
+  environment:
+   - CASC_JENKINS_CONFIG=/var/jenkins_home/casc_configs/jenkins.yaml

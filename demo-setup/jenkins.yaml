@@ -1,0 +1,80 @@
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  authorizationStrategy: "loggedInUsersCanDoAnything"
+  disableRememberMe: false
+  markupFormatter: "plainText"
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: false
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "admin"
+        password: ${jenkins_password:-xebialabs}
+tool:
+  dockerTool:
+    installations:
+    - name: "docker"
+      properties:
+      - installSource:
+          installers:
+          - docker:
+              version: "latest"
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
+  maven:
+    installations:
+    - name: "maven3"
+      properties:
+      - installSource:
+          installers:
+          - maven:
+              id: "3.5.0"
+jobs:
+  - script: >
+      folder('Demo') {
+          displayName('Demo')
+          description('XebiaLabs DevOps Pack for Jenkins demo')
+      }
+  - script: >
+      multibranchPipelineJob('Demo/petclinic') {
+        branchSources {
+          git {
+            remote('https://github.com/amitmohleji/spring-petclinic.git')
+          }
+        }
+      }
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+        - usernamePassword:
+            scope:    GLOBAL
+            id:       cred
+            username: ${dockerhubuser:-amitmohleji}
+            password: ${dockerhubpass}
+        - usernamePassword:
+            scope:    GLOBAL
+            id:       xld
+            username: admin
+            password: ${xld_password:-admin}
+        - usernamePassword:
+            scope:    GLOBAL
+            id:       xlr
+            username: admin
+            password: ${xlr_password:-admin}
