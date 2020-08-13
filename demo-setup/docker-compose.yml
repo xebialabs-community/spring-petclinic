@@ -7,7 +7,6 @@ jenkins:
   ports:
    - "8080:8080"
   links:
-   - xlr
    - xld
    - socat
   environment:
@@ -15,12 +14,13 @@ jenkins:
 
 xld:
   image: xebialabs/xl-deploy:9.7.2
-  volumes:
-   - ~/xl-licenses/deployit-license.lic:/opt/xebialabs/xl-deploy-server/conf/deployit-license.lic
   links:
    - socat
   ports:
    - "4516:4516"
+  environment:
+    - ACCEPT_EULA=Y
+    - ADMIN_PASSWORD=admin
 
 xlr:
   image: xebialabs/xl-release:9.7.2
@@ -30,6 +30,9 @@ xlr:
    - socat
   ports:
    - "5516:5516"
+  environment:
+  - ACCEPT_EULA=Y
+  - ADMIN_PASSWORD=admin
 
 socat:
   image: bobrik/socat
