@@ -19,8 +19,8 @@ xld:
   ports:
    - "4516:4516"
   environment:
-    - ACCEPT_EULA=Y
-    - ADMIN_PASSWORD=admin
+   - ACCEPT_EULA=Y
+   - ADMIN_PASSWORD=admin
 
 xlr:
   image: xebialabs/xl-release:9.7.2
@@ -31,8 +31,8 @@ xlr:
   ports:
    - "5516:5516"
   environment:
-  - ACCEPT_EULA=Y
-  - ADMIN_PASSWORD=admin
+   - ACCEPT_EULA=Y
+   - ADMIN_PASSWORD=admin
 
 socat:
   image: bobrik/socat
