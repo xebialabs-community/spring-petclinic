@@ -18,11 +18,12 @@ spec:
       containers:
       - image: amitmohleji/appz:8
         name: app-z
-        env:
-          - name: MYSQL_URL
-            value: jdbc:mysql://mysql/petclinic    
-          - name: SPRING_PROFILES_ACTIVE
-            value: mysql
+        args:
+          - "java"
+          - "-jar"
+          - "-Dspring.datasource.url=jdbc:mysql://mysql/petclinic"
+          - "-Dspring.profiles.active=mysql"
+          - "petclinic.jar"
 ---
 apiVersion: v1
 kind: Service
