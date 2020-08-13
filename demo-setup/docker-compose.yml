@@ -3,8 +3,39 @@ jenkins:
   image: xebialabsunsupported/docker-jenkins:2.189-alpine
   volumes:
    - /var/run/docker.sock:/var/run/docker.sock
-   - ./artifacts/jenkins.yaml:/var/jenkins_home/casc_configs/jenkins.yaml
+   - ./jenkins.yaml:/var/jenkins_home/casc_configs/jenkins.yaml
   ports:
    - "8080:8080"
+  links:
+   - xlr
+   - xld
+   - socat
   environment:
    - CASC_JENKINS_CONFIG=/var/jenkins_home/casc_configs/jenkins.yaml
+
+xld:
+  image: xebialabs/xl-deploy:9.7.2
+  volumes:
+   - ~/xl-licenses/deployit-license.lic:/opt/xebialabs/xl-deploy-server/conf/deployit-license.lic
+  links:
+   - socat
+  ports:
+   - "4516:4516"
+
+xlr:
+  image: xebialabs/xl-release:9.7.2
+  links:
+   - jenkins
+   - xld
+   - socat
+  ports:
+   - "5516:5516"
+
+socat:
+  image: bobrik/socat
+  ports:
+    - "2376:2375"
+  privileged: true
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+  command: TCP4-LISTEN:2375,fork,reuseaddr UNIX-CLIENT:/var/run/docker.sock

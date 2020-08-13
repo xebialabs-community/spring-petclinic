@@ -22,7 +22,7 @@ jenkins:
       enableCaptcha: false
       users:
       - id: "admin"
-        password: ${jenkins_password:-xebialabs}
+        password: "admin"
 tool:
   dockerTool:
     installations:
