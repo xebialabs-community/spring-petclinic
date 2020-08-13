@@ -18,6 +18,11 @@ spec:
       containers:
       - image: amitmohleji/appz:8
         name: app-z
+        env:
+          - name: MYSQL_URL
+            value: jdbc:mysql://mysql/petclinic    
+          - name: SPRING_PROFILES_ACTIVE
+            value: mysql
 ---
 apiVersion: v1
 kind: Service
