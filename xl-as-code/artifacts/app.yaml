@@ -16,7 +16,7 @@ spec:
         app: app-z
     spec:
       containers:
-      - image: amitmohleji/appz:8
+      - image: amitmohleji/appz:{{BUILD_NUMBER}}
         name: app-z
         args:
           - "java"
