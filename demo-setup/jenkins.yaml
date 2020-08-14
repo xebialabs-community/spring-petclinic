@@ -46,15 +46,18 @@ tool:
               id: "3.5.0"
 jobs:
   - script: >
-      folder('Demo') {
-          displayName('Demo')
-          description('XebiaLabs DevOps Pack for Jenkins demo')
-      }
-  - script: >
-      multibranchPipelineJob('Demo/petclinic') {
-        branchSources {
-          git {
-            remote('https://github.com/amitmohleji/spring-petclinic.git')
+      pipelineJob('petclinic-demo') {
+        definition {
+          cpsScm {
+            scm {
+              git {
+                remote {
+                  url('https://github.com/amitmohleji/spring-petclinic.git')
+                }
+                branch('*/main')
+              }
+            }
+            lightweight()
           }
         }
       }

@@ -1,6 +1,6 @@
 
 jenkins:
-  image: xebialabsunsupported/docker-jenkins:2.189-alpine
+  build: .
   volumes:
    - /var/run/docker.sock:/var/run/docker.sock
    - ./jenkins.yaml:/var/jenkins_home/casc_configs/jenkins.yaml
@@ -12,6 +12,7 @@ jenkins:
   environment:
    - CASC_JENKINS_CONFIG=/var/jenkins_home/casc_configs/jenkins.yaml
    - jenkins_password=admin
+   - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
 
 xld:
   image: xebialabs/xl-deploy:9.7.2
