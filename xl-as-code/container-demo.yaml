@@ -17,24 +17,19 @@ spec:
     file: !file "artifacts/app.yaml"
     tags:
     - gke
-    - oks
+    - local
   - name: ingress
     type: k8s.ResourcesFile
     createOrder: "62"
-    file: !file "artifacts/gke_ingress.yaml"
+    file: !file "artifacts/ingress.yaml"
     tags:
     - gke
-  - name: oks_route
-    type: k8s.ResourcesFile
-    createOrder: "62"
-    file: !file "artifacts/oks_route.yaml"
-    tags:
-    - oks
-  - name: oks_petclinic_ns
+    - local
+  - name: local_petclinic_ns
     type: k8s.NamespaceSpec
     namespaceName: petclinic
     tags:
-    - oks
+    - local
   - name: gke_petclinic_ns
     type: k8s.NamespaceSpec
     namespaceName: petclinic

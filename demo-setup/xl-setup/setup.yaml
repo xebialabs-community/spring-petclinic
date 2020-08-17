@@ -3,5 +3,4 @@ kind: Import
 metadata:
   imports:
     - app.yaml
-    - env.yaml
     - infra.yaml

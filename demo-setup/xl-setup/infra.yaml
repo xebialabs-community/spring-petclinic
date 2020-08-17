@@ -11,8 +11,12 @@ spec:
   tlsCert: !value Infrastructure_gke_playground_tlsCert
   tlsPrivateKey: !value Infrastructure_gke_playground_tlsPrivateKey
   debug: true
-- name: Infrastructure/minishift
-  type: openshift.Server
-  serverUrl: https://192.168.99.105:8443/
-  openshiftToken: !value "Infrastructure_minishift_openshiftToken"
-  verifyCertificates: false
+- name: Infrastructure/docker-desktop-k8s
+  type: k8s.Master
+  tags:
+  - local
+  apiServerURL: !value Infrastructure_docker-desktop-k8s_apiServerURL
+  caCert: !value Infrastructure_docker-desktop-k8s_caCert
+  tlsCert: !value Infrastructure_docker-desktop-k8s_tlsCert
+  tlsPrivateKey: !value Infrastructure_docker-desktop-k8s_tlsPrivateKey
+  debug: true
