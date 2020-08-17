@@ -20,11 +20,21 @@ spec:
     - local
   - name: ingress
     type: k8s.ResourcesFile
-    createOrder: "62"
+    createOrder: "63"
     file: !file "artifacts/ingress.yaml"
     tags:
     - gke
     - local
+  - name: sql_config
+    type: k8s.ResourcesFile
+    file: !file "artifacts/configmap.yaml"
+    tags:
+    - gke
+  - name: secrets
+    type: k8s.ResourcesFile
+    file: !file "artifacts/secret.yaml"
+    tags:
+    - gke
   - name: local_petclinic_ns
     type: k8s.NamespaceSpec
     namespaceName: petclinic
