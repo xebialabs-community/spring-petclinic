@@ -2,12 +2,17 @@
 apiVersion: xl-deploy/v1
 kind: Infrastructure
 spec:
-- name: Infrastructure/openshiftCloud
+- name: Infrastructure/gke_playground
+  type: k8s.Master
+  tags:
+  - gke
+  apiServerURL: !value Infrastructure_gke_playground_apiServerURL
+  caCert: !value Infrastructure_gke_playground_caCert
+  tlsCert: !value Infrastructure_gke_playground_tlsCert
+  tlsPrivateKey: !value Infrastructure_gke_playground_tlsPrivateKey
+  debug: true
+- name: Infrastructure/minishift
   type: openshift.Server
-  serverUrl: https://api.us-west-1.starter.openshift-online.com:6443
-  openshiftToken: !value "Infrastructure_openshiftCloud_openshiftToken"
+  serverUrl: https://192.168.99.105:8443/
+  openshiftToken: !value "Infrastructure_minishift_openshiftToken"
   verifyCertificates: false
-  children:
-  - name: petclinic
-    type: openshift.Project
-    projectName: petclinic

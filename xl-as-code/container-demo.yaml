@@ -2,7 +2,7 @@
 apiVersion: xl-deploy/v1
 kind: Applications
 spec:
-- name: Applications/container-demo/{{BUILD_NUMBER}}
+- name: !format Applications/container-demo/%BUILD_NUMBER%
   type: udm.DeploymentPackage
   deployables:
   - name: mysql
