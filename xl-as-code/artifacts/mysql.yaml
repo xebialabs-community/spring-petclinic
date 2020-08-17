@@ -24,19 +24,19 @@ spec:
             - name: MYSQL_USER
               valueFrom:
                 configMapKeyRef:
-                  name: sql_config
+                  name: sql-config
                   key: MYSQL_USER
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: sql_config
+                  name: sql-pass
                   key: MYSQL_PASSWORD
             - name: MYSQL_ROOT_PASSWORD
               value:
             - name: MYSQL_DATABASE
-               valueFrom:
+              valueFrom:
                 configMapKeyRef:
-                  name: sql_config
+                  name: sql-config
                   key: MYSQL_DATABASE
             - name: MYSQL_ALLOW_EMPTY_PASSWORD
               value: "true"
