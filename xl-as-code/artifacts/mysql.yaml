@@ -22,13 +22,22 @@ spec:
           name: mysql
           env:
             - name: MYSQL_USER
-              value: petclinic
+              valueFrom:
+                configMapKeyRef:
+                  name: sql_config
+                  key: MYSQL_USER
             - name: MYSQL_PASSWORD
-              value: petclinic
+              valueFrom:
+                secretKeyRef:
+                  name: sql_config
+                  key: MYSQL_PASSWORD
             - name: MYSQL_ROOT_PASSWORD
               value:
             - name: MYSQL_DATABASE
-              value: petclinic
+               valueFrom:
+                configMapKeyRef:
+                  name: sql_config
+                  key: MYSQL_DATABASE
             - name: MYSQL_ALLOW_EMPTY_PASSWORD
               value: "true"
           ports:
