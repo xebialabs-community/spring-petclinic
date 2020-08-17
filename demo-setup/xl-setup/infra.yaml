@@ -11,12 +11,12 @@ spec:
   tlsCert: !value Infrastructure_gke_playground_tlsCert
   tlsPrivateKey: !value Infrastructure_gke_playground_tlsPrivateKey
   debug: true
-- name: Infrastructure/docker-desktop-k8s
+- name: Infrastructure/docker_desktop_k8s
   type: k8s.Master
   tags:
   - local
-  apiServerURL: !value Infrastructure_docker-desktop-k8s_apiServerURL
-  caCert: !value Infrastructure_docker-desktop-k8s_caCert
-  tlsCert: !value Infrastructure_docker-desktop-k8s_tlsCert
-  tlsPrivateKey: !value Infrastructure_docker-desktop-k8s_tlsPrivateKey
+  apiServerURL: !value Infrastructure_docker_desktop_k8s_apiServerURL
+  caCert: !value Infrastructure_docker_desktop_k8s_caCert
+  tlsCert: !value Infrastructure_docker_desktop_k8s_tlsCert
+  tlsPrivateKey: !value Infrastructure_docker_desktop_k8s_tlsPrivateKey
   debug: true
