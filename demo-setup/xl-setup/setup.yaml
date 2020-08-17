@@ -4,3 +4,4 @@ metadata:
   imports:
     - app.yaml
     - infra.yaml
+    - env.yaml
