@@ -22,7 +22,7 @@ spec:
           - "java"
           - "-jar"
           - "-Dspring.datasource.url=jdbc:mysql://mysql/petclinic"
-          - "-Dspring.profiles.active=mysql"
+          - "-Dspring.profiles.active={{db_profile}}"
           - "petclinic.jar"
 ---
 apiVersion: v1
