@@ -1,4 +1,41 @@
-# Spring PetClinic Sample Application [![Build Status](https://travis-ci.org/spring-projects/spring-petclinic.png?branch=main)](https://travis-ci.org/spring-projects/spring-petclinic/)
+# Kubernetes Deployment with Digital.ai Deploy and Release
+
+## Introduction
+This project is built to showcase Deployment of container applications in kubernetes using Digital.ai Deploy and Release. The core Application being used for showcase is Spring Boot Based Spring-Petclinic Application. The project performs the following
+* Use Jenkins pipeline DSL to build the spring-petclinic and then push it to dockerhub.
+* Also during the build, it creates a Deploy Package using [XL command line](https://docs.xebialabs.com/v.9.7/release/how-to/install-the-xl-cli#get-started) and publishes the package into Deploy
+* Deploy is setup with environments pointing to Kubernetes for Docker Desktop and Google Kubernetes Engine.
+* Deploy can then be used to publish the application with both the environment with Docker Desktop using HSQLDB and GKE using mysql
+* Release template flow can then be showcased to chain the whole process togther wit Build, Deploy, Verify and TearDown.
+
+## Setup
+
+Perform the following steps for the setup  
+1. Verify your local docker setup is functional. Also enable Kubernetes for Docker Desktop on your machine.
+2. Go inside folder ``` demo-setup ```
+3. Run ``` docker-compose up --build ``` to build and start instances for Deploy, Release, Jenkins and socat  
+4. Verify if everything is running fine using a browser  
+* **Deploy** : ``` http://localhost:4516 , u/p : admin/admin ```
+* **Release** : ``` http://localhost:5516, u/p : admin/admin ```
+* **Jenkins** : ``` http://localhost:8080, u/p : admin/admin ```
+5. Now go inside folder xl-setup
+6. Rename ``` secrets.xlvals.example ``` to ``` secrets.xlvals```. Update the settings for Endpoint url, caCertificate, client tls Certificate, tls key for GKE and Kubernetes for Docker Desktop
+7. Make sure you have the latest [XL command line](https://docs.xebialabs.com/v.9.7/release/how-to/install-the-xl-cli#get-started)  installed 
+8. Now run this command ``` xl apply -f setup.yaml ```. This will create infrastructure endpoints, environment and applicationm configuration in Deploy and Template configurations in Release
+
+## Key Components
+* **/demo-setup** - This folder contains the setup to configure Jenkins, Deploy and Release using docker-compose. Jenkins is setup using configuration-as-code
+* **/demo-setup/xl-setup** - This folder contains the yaml files using by XL Command line to create all the CIs in deploy and release
+* **/xl-as-code** - This contains container-demo.yaml that is responsible for creating Deploy's Deployment Package dynamically through jenkins build
+* **/xl-as-code/artifacts** - This contains the actual kubernetes yamls files that create the application. Some of the file have placeholders in them that will get replaced through Deploy's dictionary entries during deployment. Those values may need to be replaced if you want to run the file directly with kubectl
+* **Dockerfile** - This is used to package springboot application into docker image
+* **Jenkinsfile** - This is used to generate jenkins pipeline with DSL code
+
+## Execution
+
+# Original Project Readme
+
+## Spring PetClinic Sample Application [![Build Status](https://travis-ci.org/spring-projects/spring-petclinic.png?branch=main)](https://travis-ci.org/spring-projects/spring-petclinic/)
 
 ## Understanding the Spring Petclinic application with a few diagrams
 <a href="https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application">See the presentation here</a>
