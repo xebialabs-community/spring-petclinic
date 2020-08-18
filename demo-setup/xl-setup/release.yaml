@@ -1,0 +1,95 @@
+---
+apiVersion: xl-release/v1
+kind: Templates
+spec:
+- directory: container-demo
+  children:
+  - name: deploy
+    type: xldeploy.XLDeployServer
+    url: http://xld:4516
+    username: admin
+    password: !value "xldeploy_XLDeployServer_deploy_password"
+  - name: jenkins
+    type: jenkins.Server
+    url: http://jenkins:8080
+    username: admin
+    password: !value "jenkins_Server_jenkins_password"
+  - template: container release
+    phases:
+    - phase: Build
+      tasks:
+      - name: build image and publish
+        type: jenkins.Build
+        jenkinsServer: jenkins
+        jobName: petclinic-demo
+        variableMapping:
+          pythonScript.buildNumber: ${buildnumber}
+      color: '#0079BC'
+    - phase: Deploy to Dev\/DockerDesktop
+      tasks:
+      - name: Generate Namespace
+        type: xldeploy.Deploy
+        server: deploy
+        deploymentApplication: Applications/container-demo
+        deploymentPackage: Applications/container-demo/${buildnumber}
+        deploymentEnvironment: Environments/dev/localk8s
+      - name: Perform Container Deployment
+        type: xldeploy.Deploy
+        server: deploy
+        deploymentApplication: Applications/container-demo
+        deploymentPackage: Applications/container-demo/${buildnumber}
+        deploymentEnvironment: Environments/dev/localk8s
+      color: '#0079BC'
+    - phase: Deploy to QA\/GKE
+      tasks:
+      - name: Generate Namespace
+        type: xldeploy.Deploy
+        server: deploy
+        deploymentApplication: Applications/container-demo
+        deploymentPackage: Applications/container-demo/${buildnumber}
+        deploymentEnvironment: Environments/qa/gke
+      - name: Perform Container Deployment
+        type: xldeploy.Deploy
+        server: deploy
+        deploymentApplication: Applications/container-demo
+        deploymentPackage: Applications/container-demo/${buildnumber}
+        deploymentEnvironment: Environments/qa/gke
+      color: '#0079BC'
+    - phase: Verify
+      tasks:
+      - name: Verify Application
+        type: xlrelease.Task
+        owner: admin
+      color: '#0079BC'
+    - phase: Destroy QA\/GKE
+      tasks:
+      - name: Destroy Deployment
+        type: xldeploy.Undeploy
+        server: deploy
+        deployedApplication: Environments/dev/localk8s/container-demo
+      color: '#0079BC'
+    - phase: Destroy Dev\/DockerDesktop
+      tasks:
+      - name: Destroy Deployment
+        type: xldeploy.Undeploy
+        server: deploy
+        deployedApplication: Environments/qa/gke/container-demo
+      color: '#0079BC'
+    variables:
+    - type: xlrelease.StringVariable
+      key: buildnumber
+      showOnReleaseStart: false
+    riskProfile: Default risk profile
+  - type: xlrelease.Dashboard
+    tiles:
+    - name: Release progress
+      type: xlrelease.ReleaseProgressTile
+    - name: Release summary
+      type: xlrelease.ReleaseSummaryTile
+    - name: Resource usage
+      type: xlrelease.ResourceUsageTile
+    - name: Release timeline
+      type: xlrelease.TimelineTile
+    - name: Release health
+      type: xlrelease.ReleaseHealthTile
+    parentTemplate: container release

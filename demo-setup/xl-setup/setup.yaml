@@ -6,4 +6,5 @@ metadata:
     - env.yaml
     - conf.yaml
     - app.yaml
+    - release.yaml
 
