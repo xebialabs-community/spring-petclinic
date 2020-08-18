@@ -12,7 +12,7 @@ This project is built to showcase Deployment of container applications in kubern
 
 Perform the following steps for the setup  
 1. Verify your local docker setup is functional. Also enable Kubernetes for Docker Desktop on your machine.
-2. Go inside folder ``` demo-setup ```
+2. Go inside folder ``` demo-setup ``` and set/export variables with your dockerhub username and password. ``` $DOCKER_HUB_PASS and $DOCKER_HUB_USER ```
 3. Run ``` docker-compose up --build ``` to build and start instances for Deploy, Release, Jenkins and socat  
 4. Verify if everything is running fine using a browser  
 * **Deploy** : ``` http://localhost:4516 , u/p : admin/admin ```
