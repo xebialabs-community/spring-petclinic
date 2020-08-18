@@ -14,6 +14,7 @@ jenkins:
    - jenkins_password=admin
    - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
    - dockerhubpass=$DOCKER_HUB_PASS
+   - dockerhubuser=$DOCKER_HUB_USER
 
 xld:
   image: xebialabs/xl-deploy:9.7.2
