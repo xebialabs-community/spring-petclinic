@@ -33,6 +33,20 @@ Perform the following steps for the setup
 
 ## Execution
 
+1. Login inside jenkins and  run petclinic-demo job. This job will build code, build a docker image, publish to dockerhub with your credentials, use xl command line to build and publish Deployment package with kubernetes yamls
+2. To individually run deployments, login inside Deploy and perform deployment with 
+* Application - Container-demo/<latest package>
+* Environment/dev/localk8s
+* Environment/qa/gke
+3. This first deployment will create a namespace in k8s and also add a new CI in the environment for that namespace. 
+4. The second deployment of the same package will now attach all deployables to the new namespace component and trigger deployment
+5. Now open Release and go inside container-demo folder
+6. You can run a new release from the **container release ** template that will do the above step 1-4 and after manual verification, also do a teardown of the deployments.
+ 
+## Observations
+* Notice that Deploy tags cause mysql to be only deployed in qa environment and not in dev
+* configmap and secrets are being populated by placeholder replacement capturing values from deploy dictionaries 
+
 # Original Project Readme
 
 ## Spring PetClinic Sample Application [![Build Status](https://travis-ci.org/spring-projects/spring-petclinic.png?branch=main)](https://travis-ci.org/spring-projects/spring-petclinic/)
