@@ -18,7 +18,7 @@ node {
        sh "sed -i 's/{{dockerhubuser}}/$dockerhubuser/g' xl-as-code/artifacts/app.yaml"
    }
    stage('Build Docker Image') {
-       appimage = docker.build("{{dockerhubuser}}/appz:$BUILD_NUMBER")
+       appimage = docker.build("$dockerhubuser/appz:$BUILD_NUMBER")
    }
    stage('Push Image to Registry(dockerhub)') {
        docker.withRegistry("", "cred") {
