@@ -8,6 +8,12 @@ This project is built to showcase Deployment of container applications in kubern
 * Deploy can then be used to publish the application with both the environment with Docker Desktop using HSQLDB and GKE using mysql
 * Release template flow can then be showcased to chain the whole process togther wit Build, Deploy, Verify and TearDown.
 
+## Prerequisites
+1. Docker-Desktop installed enabled with kubernetes [https://thenewstack.io/how-to-install-docker-desktop-with-kubernetes-on-macos/](https://thenewstack.io/how-to-install-docker-desktop-with-kubernetes-on-macos/)
+2. Google Kubernetes Engine account setup with a project [https://cloud.google.com/kubernetes-engine/docs/quickstart](https://cloud.google.com/kubernetes-engine/docs/quickstart)
+3. Create dockerhub account or using existing. Create **petclinic** repository on dockerhub under your account. eg ``` amitmohleji/petclinic ```
+4.
+
 ## Setup
 
 Perform the following steps for the setup  
