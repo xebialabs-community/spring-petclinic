@@ -11,14 +11,16 @@ This project is built to showcase Deployment of container applications in kubern
 ## Prerequisites
 1. Docker-Desktop installed enabled with kubernetes [https://thenewstack.io/how-to-install-docker-desktop-with-kubernetes-on-macos/](https://thenewstack.io/how-to-install-docker-desktop-with-kubernetes-on-macos/)
 2. Google Kubernetes Engine account setup with a project [https://cloud.google.com/kubernetes-engine/docs/quickstart](https://cloud.google.com/kubernetes-engine/docs/quickstart)
-3. Create dockerhub account or using existing. Create **petclinic** repository on dockerhub under your account. eg ``` amitmohleji/petclinic ```
-4.
+3. Capture either Client Certificate credentials or token based credentials for both docker-desktop-kubernetes and GKE.
+4. Create dockerhub account or use existing. Create **petclinic** repository on dockerhub under your account. eg ``` amitmohleji/petclinic ```
+5. Open a terminal window and checkout this project using git client
+6. Go inside folder ``` demo-setup ``` and set/export variables with your dockerhub username and password. ``` $DOCKER_HUB_PASS and $DOCKER_HUB_USER ``` ( These would be dynamically passed to jenkins setup and will be eventually referred in the Jenkinsfile for pushing new image to your dockerhub registry )
 
 ## Setup
 
 Perform the following steps for the setup  
-1. Verify your local docker setup is functional. Also enable Kubernetes for Docker Desktop on your machine.
-2. Go inside folder ``` demo-setup ``` and set/export variables with your dockerhub username and password. ``` $DOCKER_HUB_PASS and $DOCKER_HUB_USER ```
+1. Make sure you have done the above pre-requisites.
+2. Make sure you are still inside folder ``` demo-setup ```
 3. Run ``` docker-compose up --build ``` to build and start instances for Deploy, Release, Jenkins and socat  
 4. Verify if everything is running fine using a browser  
 * **Deploy** : ``` http://localhost:4516 , u/p : admin/admin ```
