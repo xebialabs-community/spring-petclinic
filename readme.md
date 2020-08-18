@@ -35,7 +35,7 @@ Perform the following steps for the setup
 
 1. Login inside jenkins and  run petclinic-demo job. This job will build code, build a docker image, publish to dockerhub with your credentials, use xl command line to build and publish Deployment package with kubernetes yamls
 2. To individually run deployments, login inside Deploy and perform deployment with 
-* Application - Container-demo/<latest package>
+* Application/container-demo/<latest package>
 * Environment/dev/localk8s
 * Environment/qa/gke
 3. This first deployment will create a namespace in k8s and also add a new CI in the environment for that namespace. 
