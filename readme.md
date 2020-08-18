@@ -41,7 +41,7 @@ Perform the following steps for the setup
 3. This first deployment will create a namespace in k8s and also add a new CI in the environment for that namespace. 
 4. The second deployment of the same package will now attach all deployables to the new namespace component and trigger deployment
 5. Now open Release and go inside container-demo folder
-6. You can run a new release from the **container release ** template that will do the above step 1-4 and after manual verification, also do a teardown of the deployments.
+6. You can run a new release from the **container release** template that will do the above step 1-4 and after manual verification, also do a teardown of the deployments.
  
 ## Observations
 * Notice that Deploy tags cause mysql to be only deployed in qa environment and not in dev
