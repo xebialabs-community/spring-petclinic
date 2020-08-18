@@ -4,3 +4,4 @@ kind: Applications
 spec:
 - name: Applications/container-demo
   type: udm.Application
+  pipeline: Configuration/k8s_pipeline
