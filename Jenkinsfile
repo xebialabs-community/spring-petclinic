@@ -15,6 +15,7 @@ node {
    }
    stage('Update K8s.yaml'){
        sh "sed -i 's/{{BUILD_NUMBER}}/$BUILD_NUMBER/g' xl-as-code/artifacts/app.yaml"
+       sh "sed -i 's/{{dockerhubuser}}/$dockerhubuser/g' xl-as-code/artifacts/app.yaml"
    }
    stage('Build Docker Image') {
        appimage = docker.build("amitmohleji/appz:$BUILD_NUMBER")
