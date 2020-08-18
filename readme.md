@@ -1,7 +1,7 @@
 # Kubernetes Deployment with Digital.ai Deploy and Release
 
 ## Introduction
-This project is built to showcase Deployment of container applications in kubernetes using Digital.ai Deploy and Release. The core Application being used for showcase is Spring Boot Based Spring-Petclinic Application. The project performs the following
+This project is built to showcase Deployment of container applications in kubernetes using Digital.ai [Deploy k8s plugin](https://docs.xebialabs.com/v.9.7/deploy/concept/xl-deploy-kubernetes-plugin/) and [Release](https://docs.xebialabs.com/v.9.7/release/get-started#get-started). The core Application being used for showcase is Spring Boot Based Spring-Petclinic Application. The project performs the following
 * Use Jenkins pipeline DSL to build the spring-petclinic and then push it to dockerhub.
 * Also during the build, it creates a Deploy Package using [XL command line](https://docs.xebialabs.com/v.9.7/release/how-to/install-the-xl-cli#get-started) and publishes the package into Deploy
 * Deploy is setup with environments pointing to Kubernetes for Docker Desktop and Google Kubernetes Engine.
