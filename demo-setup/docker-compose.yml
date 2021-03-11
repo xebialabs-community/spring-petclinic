@@ -17,7 +17,7 @@ jenkins:
    - dockerhubuser=$DOCKER_HUB_USER
 
 xld:
-  image: xebialabs/xl-deploy:9.7.2
+  image: xebialabs/xl-deploy:10.0.0
   links:
    - socat
   ports:
@@ -27,7 +27,7 @@ xld:
    - ADMIN_PASSWORD=admin
 
 xlr:
-  image: xebialabs/xl-release:9.7.2
+  image: xebialabs/xl-release:10.0.0
   links:
    - jenkins
    - xld

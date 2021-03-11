@@ -20,9 +20,8 @@ spec:
         name: app-z
         args:
           - "java"
-          - "-jar"
-          - "-Dspring.datasource.url=jdbc:mysql://mysql/petclinic"
           - "-Dspring.profiles.active={{db_profile}}"
+          - "-jar"
           - "petclinic.jar"
 ---
 apiVersion: v1
