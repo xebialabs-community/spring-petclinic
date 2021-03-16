@@ -10,6 +10,7 @@ spec:
   caCert: !value Infrastructure_gke_playground_caCert
   tlsCert: !value Infrastructure_gke_playground_tlsCert
   tlsPrivateKey: !value Infrastructure_gke_playground_tlsPrivateKey
+  token: !value Infrastructure_gke_playground_token
   debug: true
 - name: Infrastructure/docker_desktop_k8s
   type: k8s.Master
@@ -20,3 +21,15 @@ spec:
   tlsCert: !value Infrastructure_docker_desktop_k8s_tlsCert
   tlsPrivateKey: !value Infrastructure_docker_desktop_k8s_tlsPrivateKey
   debug: true
+- name: Infrastructure/eks_cluster
+  type: k8s.Master
+  tags:
+  - local
+  apiServerURL: !value "Infrastructure_eks_cluster_apiServerURL"
+  skipTLS: true
+  isEKS: true
+  useGlobal: false
+  regionName: us-east-2
+  clusterName: amit-cluster
+  accessKey: !value "Infrastructure_eks_cluster_accessKey"
+  accessSecret: !value "Infrastructure_eks_cluster_accessSecret"
