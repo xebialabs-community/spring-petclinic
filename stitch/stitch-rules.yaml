@@ -5,8 +5,7 @@ spec:
   - name: "mysql.jdbc.qa.url.add"
     condition:
       deployedType: k8s.Resources
-      expression: "#ctx.deployedApplication.environment.name == 'gke'"
-      expression: "#ctx.currentDeployed.name == 'app'"
+      expression: "#ctx.deployedApplication.environment.name == 'gke' && #ctx.currentDeployed.name == 'app'"
     processor:
       - type: patch
         description: "Adding JDBC URL for Mysql"
