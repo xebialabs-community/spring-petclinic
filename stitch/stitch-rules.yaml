@@ -1,6 +1,6 @@
 kind: Rules
 metadata:
-  namespace: azure-freemarker
+  namespace: spring-petclinic
 spec:
   - name: "mysql.jdbc.qa.url.add"
     condition:
