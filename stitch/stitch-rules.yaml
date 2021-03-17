@@ -1,0 +1,20 @@
+kind: Rules
+metadata:
+  namespace: azure-freemarker
+spec:
+  - name: "mysql.jdbc.qa.url.add"
+    condition:
+      deployedType: k8s.Resources
+      expression: "#ctx.deployedApplication.environment.name == 'gke'"
+      expression: "#ctx.currentDeployed.name == 'app'"
+    processor:
+      - type: patch
+        description: "Adding JDBC URL for Mysql"
+        phase: PATCH
+        merge:
+          type: overlay
+        parameters:
+          patch:
+            - op: add
+              path: "/spec/template/spec/containers/0/args/1"
+              value: "-Dspring.datasource.url=jdbc:mysql://mysql/petclinic"
