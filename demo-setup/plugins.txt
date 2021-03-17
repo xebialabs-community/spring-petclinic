@@ -1,9 +1,5 @@
-git:4.3.0
-git-client:3.3.2
-configuration-as-code:1.36
-docker-build-step:2.5
-workflow-aggregator:2.6
-maven-plugin:3.7
-credentials:2.3.11
-job-dsl:1.77
-docker-workflow:1.23
+git:latest
+configuration-as-code:latest
+maven-plugin:latest
+job-dsl:latest
+docker-workflow:latest
